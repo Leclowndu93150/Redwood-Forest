@@ -59,7 +59,7 @@ public class ModBiomes {
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
-                .temperature(0.6F)
+                .temperature(0.8F)
                 .downfall(0.9F)
                 .specialEffects(new BiomeSpecialEffects.Builder()
                         .waterColor(0x3F76E4)

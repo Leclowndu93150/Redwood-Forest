@@ -4,6 +4,7 @@ import com.leclowndu93150.reflavored.RedwoodForest;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -70,13 +71,43 @@ public class ModConfiguredFeatures {
                 ));
 
         register(context, PATCH_DOUGLAS_IRIS, Feature.FLOWER,
-                new RandomPatchConfiguration(32, 6, 2, placedFeatures.getOrThrow(ModPlacedFeatures.DOUGLAS_IRIS_PLACED)));
+                new RandomPatchConfiguration(
+                        32,
+                        6,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(ModBlocks.DOUGLAS_IRIS.get())
+                                )
+                        )
+                ));
 
         register(context, PATCH_TRILLIUM, Feature.FLOWER,
-                new RandomPatchConfiguration(48, 6, 2, placedFeatures.getOrThrow(ModPlacedFeatures.TRILLIUM_PLACED)));
+                new RandomPatchConfiguration(
+                        48,
+                        6,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(ModBlocks.TRILLIUM.get())
+                                )
+                        )
+                ));
 
         register(context, PATCH_ALPINE_LILY, Feature.FLOWER,
-                new RandomPatchConfiguration(16, 5, 2, placedFeatures.getOrThrow(ModPlacedFeatures.ALPINE_LILY_PLACED)));
+                new RandomPatchConfiguration(
+                        16,
+                        6,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(ModBlocks.ALPINE_LILY.get())
+                                )
+                        )
+                ));
     }
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(

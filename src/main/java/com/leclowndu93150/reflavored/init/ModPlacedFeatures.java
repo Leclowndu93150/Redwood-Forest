@@ -83,22 +83,25 @@ public class ModPlacedFeatures {
         register(context, ALPINE_LILY_PLACED, configuredFeatures.getOrThrow(net.minecraft.data.worldgen.features.VegetationFeatures.PATCH_GRASS),
                 PlacementUtils.filteredByBlockSurvival(ModBlocks.ALPINE_LILY.get()));
 
-        register(context, PATCH_DOUGLAS_IRIS, configuredFeatures.getOrThrow(ModConfiguredFeatures.PATCH_DOUGLAS_IRIS),
+        register(context, PATCH_DOUGLAS_IRIS,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.PATCH_DOUGLAS_IRIS),
                 RarityFilter.onAverageOnceEvery(4),
                 InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome());
 
-        register(context, PATCH_TRILLIUM, configuredFeatures.getOrThrow(ModConfiguredFeatures.PATCH_TRILLIUM),
+        register(context, PATCH_TRILLIUM,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.PATCH_TRILLIUM),
                 RarityFilter.onAverageOnceEvery(3),
                 InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome());
 
-        register(context, PATCH_ALPINE_LILY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PATCH_ALPINE_LILY),
+        register(context, PATCH_ALPINE_LILY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.PATCH_ALPINE_LILY),
                 RarityFilter.onAverageOnceEvery(6),
                 InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome());
     }
 
