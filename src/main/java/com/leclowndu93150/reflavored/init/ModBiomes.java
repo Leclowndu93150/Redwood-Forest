@@ -43,6 +43,8 @@ public class ModBiomes {
         BiomeDefaultFeatures.addDefaultGrass(generationBuilder);
         BiomeDefaultFeatures.addDefaultMushrooms(generationBuilder);
         BiomeDefaultFeatures.addDefaultExtraVegetation(generationBuilder);
+        BiomeDefaultFeatures.addMossyStoneBlock(generationBuilder);
+        BiomeDefaultFeatures.addFerns(generationBuilder);
         
         generationBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(ModPlacedFeatures.REDWOOD_TREES));
         generationBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(ModPlacedFeatures.PATCH_DOUGLAS_IRIS));
@@ -54,12 +56,12 @@ public class ModBiomes {
         BiomeDefaultFeatures.farmAnimals(spawnBuilder);
         
         spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.CHICKEN, 8, 4, 4));
-        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 10, 2, 3));
-        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.FOX, 8, 2, 4));
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 10, 2, 10));
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.FOX, 30, 2, 4));
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
-                .temperature(0.8F)
+                .temperature(0.9F)
                 .downfall(0.9F)
                 .specialEffects(new BiomeSpecialEffects.Builder()
                         .waterColor(0x3F76E4)

@@ -79,6 +79,13 @@ public class ModLootTableProvider extends LootTableProvider {
                                     .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                             .hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER)))))));
+
+            add(ModBlocks.POTTED_DOUGLAS_IRIS.get(),
+                    block -> createPotFlowerItemTable(ModBlocks.DOUGLAS_IRIS.get()));
+
+            add(ModBlocks.POTTED_TRILLIUM.get(),
+                    block -> createPotFlowerItemTable(ModBlocks.TRILLIUM.get()));
+
         }
 
         @Override

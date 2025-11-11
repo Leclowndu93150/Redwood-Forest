@@ -83,4 +83,19 @@ public class ModBlocks {
 
     public static final DeferredBlock<AlpineLilyBlock> ALPINE_LILY = BLOCKS.register("alpine_lily",
             () -> new AlpineLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SUNFLOWER)));
+
+    public static final DeferredBlock<FlowerPotBlock> POTTED_DOUGLAS_IRIS =
+            BLOCKS.register("potted_douglas_iris",
+                    () -> new FlowerPotBlock(
+                            () -> (FlowerPotBlock) Blocks.FLOWER_POT,
+                            ModBlocks.DOUGLAS_IRIS,
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+
+    public static final DeferredBlock<FlowerPotBlock> POTTED_TRILLIUM =
+            BLOCKS.register("potted_trillium",
+                    () -> new FlowerPotBlock(
+                            () -> (FlowerPotBlock) Blocks.FLOWER_POT,
+                            ModBlocks.TRILLIUM,
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+
 }
