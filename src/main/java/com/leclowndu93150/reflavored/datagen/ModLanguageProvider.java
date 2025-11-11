@@ -13,7 +13,9 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup." + RedwoodForest.MODID, "Redwood Forest");
+        add("itemGroup." + RedwoodForest.MODID, "Reflavored");
+
+        add("biome.reflavored.redwood_forest", "Redwood Forest");
 
         addBlock(ModBlocks.REDWOOD_LOG, "Redwood Log");
         addBlock(ModBlocks.REDWOOD_WOOD, "Redwood Wood");
@@ -30,12 +32,12 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.REDWOOD_TRAPDOOR, "Redwood Trapdoor");
         addBlock(ModBlocks.REDWOOD_PRESSURE_PLATE, "Redwood Pressure Plate");
         addBlock(ModBlocks.REDWOOD_BUTTON, "Redwood Button");
-        
+
         addItem(ModItems.REDWOOD_SIGN, "Redwood Sign");
         addItem(ModItems.REDWOOD_HANGING_SIGN, "Redwood Hanging Sign");
         addItem(ModItems.REDWOOD_BOAT, "Redwood Boat");
         addItem(ModItems.REDWOOD_CHEST_BOAT, "Redwood Boat with Chest");
-        
+
         addBlock(ModBlocks.DOUGLAS_IRIS, "Douglas Iris");
         addBlock(ModBlocks.TRILLIUM, "Trillium");
         addBlock(ModBlocks.ALPINE_LILY, "Alpine Lily");

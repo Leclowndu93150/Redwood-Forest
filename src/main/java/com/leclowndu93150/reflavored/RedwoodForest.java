@@ -17,10 +17,7 @@ import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.TallFlowerBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.feature.RandomPatchFeature;
@@ -61,7 +58,31 @@ public class RedwoodForest {
         event.enqueueWork(() -> {
             MOD_STRIPPABLES.put(ModBlocks.REDWOOD_LOG.get(), ModBlocks.STRIPPED_REDWOOD_LOG.get());
             MOD_STRIPPABLES.put(ModBlocks.REDWOOD_WOOD.get(), ModBlocks.STRIPPED_REDWOOD_WOOD.get());
-            
+
+            FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
+
+            pot.addPlant(ModBlocks.DOUGLAS_IRIS.getId(), ModBlocks.POTTED_DOUGLAS_IRIS);
+            pot.addPlant(ModBlocks.TRILLIUM.getId(), ModBlocks.POTTED_TRILLIUM);
+
+            FireBlock fire = (FireBlock) Blocks.FIRE;
+
+            fire.setFlammable(ModBlocks.REDWOOD_LOG.get(), 5, 5);
+            fire.setFlammable(ModBlocks.STRIPPED_REDWOOD_LOG.get(), 5, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_WOOD.get(), 5, 5);
+            fire.setFlammable(ModBlocks.STRIPPED_REDWOOD_WOOD.get(), 5, 5);
+
+            fire.setFlammable(ModBlocks.REDWOOD_PLANKS.get(), 20, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_SLAB.get(), 20, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_STAIRS.get(), 20, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_FENCE.get(), 20, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_FENCE_GATE.get(), 20, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_DOOR.get(), 20, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_TRAPDOOR.get(), 20, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_BUTTON.get(), 20, 5);
+            fire.setFlammable(ModBlocks.REDWOOD_PRESSURE_PLATE.get(), 20, 5);
+
+            fire.setFlammable(ModBlocks.REDWOOD_LEAVES.get(), 60, 30);
+
             Regions.register(new ModRegion(5));
         });
     }

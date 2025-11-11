@@ -93,6 +93,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                       DoubleBlockHalf.UPPER)
                 .modelForState().modelFile(models().cross("alpine_lily_top", 
                       modLoc("block/alpine_lily_top")).renderType("cutout")).addModel();
+
+        pottedPlantBlock(ModBlocks.POTTED_DOUGLAS_IRIS.get(),
+                blockTexture(ModBlocks.DOUGLAS_IRIS.get()));
+
+        pottedPlantBlock(ModBlocks.POTTED_TRILLIUM.get(),
+                blockTexture(ModBlocks.TRILLIUM.get()));
+
+
     }
 
     private void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -105,6 +113,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ResourceLocation barkTexture = modLoc("block/" + logTextureName);
         axisBlock(block, barkTexture, barkTexture);
     }
+
+    private void pottedPlantBlock(Block potBlock, ResourceLocation plantTexture) {
+        ModelFile model = models()
+                .withExistingParent(name(potBlock), mcLoc("block/flower_pot_cross"))
+                .texture("plant", plantTexture)
+                        .renderType("cutout");
+
+        simpleBlock(potBlock, model);
+    }
+
 
     private String name(Block block) {
         return key(block).getPath();
