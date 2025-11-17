@@ -1,11 +1,7 @@
 package com.leclowndu93150.reflavored.init;
 
 import com.leclowndu93150.reflavored.RedwoodForest;
-import com.leclowndu93150.reflavored.block.ModCeilingHangingSignBlock;
-import com.leclowndu93150.reflavored.block.ModStandingSignBlock;
-import com.leclowndu93150.reflavored.block.ModWallHangingSignBlock;
-import com.leclowndu93150.reflavored.block.ModWallSignBlock;
-import com.leclowndu93150.reflavored.block.AlpineLilyBlock;
+import com.leclowndu93150.reflavored.block.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
@@ -83,6 +79,15 @@ public class ModBlocks {
 
     public static final DeferredBlock<AlpineLilyBlock> ALPINE_LILY = BLOCKS.register("alpine_lily",
             () -> new AlpineLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SUNFLOWER)));
+
+    public static final DeferredBlock<OrangeLilyBlock> ORANGE_LILY = BLOCKS.register("orange_rose_bush",
+            () -> new OrangeLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SUNFLOWER)));
+
+    public static final DeferredBlock<YellowLilyBlock> YELLOW_LILY = BLOCKS.register("yellow_rose_bush",
+            () -> new YellowLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SUNFLOWER)));
+
+    public static final DeferredBlock<PinkLilyBlock> PINK_LILY = BLOCKS.register("pink_rose_bush",
+            () -> new PinkLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SUNFLOWER)));
 
     public static final DeferredBlock<FlowerPotBlock> POTTED_DOUGLAS_IRIS =
             BLOCKS.register("potted_douglas_iris",

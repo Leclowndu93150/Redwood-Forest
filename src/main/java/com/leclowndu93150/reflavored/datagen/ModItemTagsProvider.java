@@ -67,4 +67,5 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.COMPLETES_FIND_TREE_TUTORIAL)
                 .add(ModItems.REDWOOD_LOG.get());
     }
+
 }

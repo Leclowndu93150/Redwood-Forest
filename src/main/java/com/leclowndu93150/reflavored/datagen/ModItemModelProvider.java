@@ -10,7 +10,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -32,10 +31,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         blockItem(ModBlocks.REDWOOD_FENCE_GATE.get());
         blockItem(ModBlocks.REDWOOD_PRESSURE_PLATE.get());
         blockItemWithSuffix(ModBlocks.REDWOOD_TRAPDOOR.get(), "_bottom");
-        
+
         OurfenceInventory("redwood_fence", modLoc("block/redwood_planks"));
         OurbuttonInventory("redwood_button", modLoc("block/redwood_planks"));
-        
+
         generatedItem(ModItems.REDWOOD_DOOR);
         generatedItem(ModItems.REDWOOD_SAPLING);
         generatedItem(ModItems.REDWOOD_SIGN);
@@ -46,6 +45,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItem(ModItems.DOUGLAS_IRIS);
         generatedItem(ModItems.TRILLIUM);
         generatedItem(ModItems.ALPINE_LILY);
+        generatedItem(ModItems.ORANGE_LILY);
+        generatedItem(ModItems.YELLOW_LILY);
+        generatedItem(ModItems.PINK_LILY);
+
+        // FD cabinet item model only if bound
+        if (com.leclowndu93150.reflavored.compat.fd.FDCompat.REDWOOD_CABINET.isBound()) {
+            withExistingParent("redwood_cabinet", modLoc("block/redwood_cabinet"));
+        }
     }
 
     private void blockItem(Block block) {

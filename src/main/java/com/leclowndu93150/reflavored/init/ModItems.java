@@ -41,4 +41,11 @@ public class ModItems {
     public static final DeferredItem<BlockItem> TRILLIUM = ITEMS.registerSimpleBlockItem("trillium", ModBlocks.TRILLIUM);
     public static final DeferredItem<BlockItem> ALPINE_LILY = ITEMS.register("alpine_lily",
             () -> new DoubleHighBlockItem(ModBlocks.ALPINE_LILY.get(), new Item.Properties()));
+
+    public static final DeferredItem<BlockItem> ORANGE_LILY = ITEMS.register("orange_rose_bush",
+            () -> new DoubleHighBlockItem(ModBlocks.ORANGE_LILY.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> YELLOW_LILY = ITEMS.register("yellow_rose_bush",
+            () -> new DoubleHighBlockItem(ModBlocks.YELLOW_LILY.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> PINK_LILY = ITEMS.register("pink_rose_bush",
+            () -> new DoubleHighBlockItem(ModBlocks.PINK_LILY.get(), new Item.Properties()));
 }

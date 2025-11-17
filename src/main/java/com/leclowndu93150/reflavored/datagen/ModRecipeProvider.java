@@ -84,6 +84,13 @@ public class ModRecipeProvider extends RecipeProvider {
                 .group("orange_dye")
                 .unlockedBy("has_flower", has(ModBlocks.ALPINE_LILY.get()))
                 .save(recipeOutput, "orange_dye_from_alpine_lily");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.ORANGE_DYE)
+                .requires(ModBlocks.ORANGE_LILY.get())
+                .group("orange_dye")
+                .unlockedBy("has_flower", has(ModBlocks.ORANGE_LILY.get()))
+                .save(recipeOutput, "orange_dye_from_orange_lily");
+
     }
 
     protected static void fence(RecipeOutput output, ItemLike fence, ItemLike planks) {

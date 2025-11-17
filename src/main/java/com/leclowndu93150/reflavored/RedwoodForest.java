@@ -49,7 +49,8 @@ public class RedwoodForest {
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModBoats.ENTITY_TYPES.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        
+        com.leclowndu93150.reflavored.compat.fd.FDCompatBootstrap.init(modEventBus);
+
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::commonSetup);
     }

@@ -1,5 +1,6 @@
 package com.leclowndu93150.reflavored.datagen;
 
+import com.leclowndu93150.reflavored.compat.fd.FDCompat;
 import com.leclowndu93150.reflavored.init.ModBlocks;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
@@ -80,11 +81,44 @@ public class ModLootTableProvider extends LootTableProvider {
                                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                             .hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER)))))));
 
+            add(ModBlocks.ORANGE_LILY.get(), block ->
+                    LootTable.lootTable()
+                            .withPool(applyExplosionCondition(block,
+                                    LootPool.lootPool()
+                                            .setRolls(ConstantValue.exactly(1.0F))
+                                            .add(LootItem.lootTableItem(block)
+                                                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                    .hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER)))))));
+
+            add(ModBlocks.YELLOW_LILY.get(), block ->
+                    LootTable.lootTable()
+                            .withPool(applyExplosionCondition(block,
+                                    LootPool.lootPool()
+                                            .setRolls(ConstantValue.exactly(1.0F))
+                                            .add(LootItem.lootTableItem(block)
+                                                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                    .hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER)))))));
+
+
+            add(ModBlocks.PINK_LILY.get(), block ->
+                    LootTable.lootTable()
+                            .withPool(applyExplosionCondition(block,
+                                    LootPool.lootPool()
+                                            .setRolls(ConstantValue.exactly(1.0F))
+                                            .add(LootItem.lootTableItem(block)
+                                                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                    .hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER)))))));
+
             add(ModBlocks.POTTED_DOUGLAS_IRIS.get(),
                     block -> createPotFlowerItemTable(ModBlocks.DOUGLAS_IRIS.get()));
 
             add(ModBlocks.POTTED_TRILLIUM.get(),
                     block -> createPotFlowerItemTable(ModBlocks.TRILLIUM.get()));
+
+            add(FDCompat.REDWOOD_CABINET.get(), this::createNameableBlockEntityTable);
 
         }
 

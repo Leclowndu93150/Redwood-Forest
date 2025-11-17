@@ -100,6 +100,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     implementation "curse.maven:terrablender-neoforge-940057:6054947"
+    implementation "curse.maven:farmers-delight-398521:6917256"
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
