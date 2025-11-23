@@ -1,6 +1,6 @@
 package com.leclowndu93150.reflavored.datagen;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import com.leclowndu93150.reflavored.init.ModBlocks;
 import com.leclowndu93150.reflavored.init.ModItems;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,7 +15,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, RedwoodForest.MODID, existingFileHelper);
+        super(output, Redflavored.MODID, existingFileHelper);
     }
 
     @Override
@@ -48,11 +48,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItem(ModItems.ORANGE_LILY);
         generatedItem(ModItems.YELLOW_LILY);
         generatedItem(ModItems.PINK_LILY);
+        generatedItem(ModItems.LAVENDER);
 
-        // FD cabinet item model only if bound
-        if (com.leclowndu93150.reflavored.compat.fd.FDCompat.REDWOOD_CABINET.isBound()) {
-            withExistingParent("redwood_cabinet", modLoc("block/redwood_cabinet"));
-        }
+//        // FD cabinet item model only if bound
+//        if (com.leclowndu93150.reflavored.compat.fd.FDCompat.REDWOOD_CABINET.isBound()) {
+//            withExistingParent("redwood_cabinet", modLoc("block/redwood_cabinet"));
+//        }
     }
 
     private void blockItem(Block block) {

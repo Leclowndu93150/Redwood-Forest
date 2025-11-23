@@ -1,6 +1,6 @@
 package com.leclowndu93150.reflavored.event;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import com.leclowndu93150.reflavored.init.ModBiomes;
 import com.leclowndu93150.reflavored.duck.IGreyFoxAccessor;
 import net.minecraft.core.Holder;
@@ -10,7 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 
-@EventBusSubscriber(modid = RedwoodForest.MODID)
+@EventBusSubscriber(modid = Redflavored.MODID)
 public class ModEvents {
     
     @SubscribeEvent

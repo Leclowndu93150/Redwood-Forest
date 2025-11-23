@@ -1,6 +1,6 @@
 package com.leclowndu93150.reflavored.init;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -10,11 +10,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = 
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RedwoodForest.MODID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Redflavored.MODID);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> REDWOOD_TAB = CREATIVE_MODE_TABS.register("redwood_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + RedwoodForest.MODID))
+                    .title(Component.translatable("itemGroup." + Redflavored.MODID))
                     .icon(() -> new ItemStack(ModBlocks.REDWOOD_LOG.get()))
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.REDWOOD_LOG.get());
@@ -39,6 +39,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.ALPINE_LILY.get());
                         output.accept(ModItems.REDWOOD_BOAT.get());
                         output.accept(ModItems.REDWOOD_CHEST_BOAT.get());
+                        output.accept(ModItems.LAVENDER.get());
                     })
                     .build());
 }

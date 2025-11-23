@@ -1,6 +1,6 @@
 package com.leclowndu93150.reflavored.init;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import com.leclowndu93150.reflavored.entity.ModBoatEntity;
 import com.leclowndu93150.reflavored.entity.ModChestBoatEntity;
 import net.minecraft.core.registries.Registries;
@@ -11,7 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModBoats {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = 
-            DeferredRegister.create(Registries.ENTITY_TYPE, RedwoodForest.MODID);
+            DeferredRegister.create(Registries.ENTITY_TYPE, Redflavored.MODID);
 
     public static final DeferredHolder<EntityType<?>, EntityType<ModBoatEntity>> REDWOOD_BOAT = 
             ENTITY_TYPES.register("redwood_boat", 

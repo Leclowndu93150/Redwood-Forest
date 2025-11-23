@@ -1,7 +1,8 @@
 package com.leclowndu93150.reflavored.init;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import com.leclowndu93150.reflavored.block.*;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
@@ -11,7 +12,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(RedwoodForest.MODID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Redflavored.MODID);
 
     public static final DeferredBlock<LeavesBlock> REDWOOD_LEAVES = BLOCKS.register("redwood_leaves", 
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
@@ -89,6 +90,24 @@ public class ModBlocks {
     public static final DeferredBlock<PinkLilyBlock> PINK_LILY = BLOCKS.register("pink_rose_bush",
             () -> new PinkLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SUNFLOWER)));
 
+    public static final DeferredBlock<BushBlock> LAVENDER = BLOCKS.register(
+            "lavender",
+            () -> new BushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)) {
+                @Override
+                protected MapCodec<? extends BushBlock> codec() {
+                    return null;
+                }
+            }
+    );
+
+
+    //lavender
+//    public static final DeferredBlock<Block> LAVENDER_CONCRETE = BLOCKS.register("lavender_concrete",
+//            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGENTA_CONCRETE)));
+//    public static final DeferredBlock<Block> LAVENDER_CONCRETE_POWDER = BLOCKS.register("lavender_concrete_powder",
+//            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGENTA_CONCRETE_POWDER)));
+
+
     public static final DeferredBlock<FlowerPotBlock> POTTED_DOUGLAS_IRIS =
             BLOCKS.register("potted_douglas_iris",
                     () -> new FlowerPotBlock(
@@ -101,6 +120,13 @@ public class ModBlocks {
                     () -> new FlowerPotBlock(
                             () -> (FlowerPotBlock) Blocks.FLOWER_POT,
                             ModBlocks.TRILLIUM,
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+
+    public static final DeferredBlock<FlowerPotBlock> POTTED_LAVENDER =
+            BLOCKS.register("potted_lavender",
+                    () -> new FlowerPotBlock(
+                            () -> (FlowerPotBlock) Blocks.FLOWER_POT,
+                            ModBlocks.LAVENDER,
                             BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
 
 }

@@ -1,6 +1,6 @@
 package com.leclowndu93150.reflavored.datagen;
 
-import com.leclowndu93150.reflavored.compat.fd.FDCompat;
+//import com.leclowndu93150.reflavored.compat.fd.FDCompat;
 import com.leclowndu93150.reflavored.init.ModBlocks;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
@@ -112,13 +112,18 @@ public class ModLootTableProvider extends LootTableProvider {
                                                             .setProperties(StatePropertiesPredicate.Builder.properties()
                                                                     .hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER)))))));
 
+            dropSelf(ModBlocks.LAVENDER.get());
+
             add(ModBlocks.POTTED_DOUGLAS_IRIS.get(),
                     block -> createPotFlowerItemTable(ModBlocks.DOUGLAS_IRIS.get()));
 
             add(ModBlocks.POTTED_TRILLIUM.get(),
                     block -> createPotFlowerItemTable(ModBlocks.TRILLIUM.get()));
 
-            add(FDCompat.REDWOOD_CABINET.get(), this::createNameableBlockEntityTable);
+            add(ModBlocks.POTTED_LAVENDER.get(),
+                    block -> createPotFlowerItemTable(ModBlocks.LAVENDER.get()));
+
+//            add(FDCompat.REDWOOD_CABINET.get(), this::createNameableBlockEntityTable);
 
         }
 

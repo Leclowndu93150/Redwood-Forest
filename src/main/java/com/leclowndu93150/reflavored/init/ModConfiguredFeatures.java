@@ -1,12 +1,13 @@
 package com.leclowndu93150.reflavored.init;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaPineFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.AlterGroundDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
@@ -29,18 +31,23 @@ import java.util.List;
 
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> REDWOOD = createKey("redwood");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CYPRESSE = createKey("cypresse");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MEGA_REDWOOD = createKey("mega_redwood");
     public static final ResourceKey<ConfiguredFeature<?, ?>> REDWOOD_TREES = createKey("redwood_trees");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_BROWN_MUSHROOM = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.parse("minecraft:patch_brown_mushroom"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_RED_MUSHROOM = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.parse("minecraft:patch_red_mushroom"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_TAIGA_GRASS = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.parse("minecraft:patch_taiga_grass"));
-    
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_DOUGLAS_IRIS = createKey("patch_douglas_iris");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_TRILLIUM = createKey("patch_trillium");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_ALPINE_LILY = createKey("patch_alpine_lily");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_LAVENDER = createKey("patch_lavender");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_FIELD_FLOWERS = createKey("patch_field_flowers");
+
+
     public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(RedwoodForest.MODID, name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Redflavored.MODID, name));
     }
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -69,6 +76,14 @@ public class ModConfiguredFeatures {
                         )),
                         placedFeatures.getOrThrow(ModPlacedFeatures.REDWOOD_CHECKED)
                 ));
+
+        register(context, CYPRESSE, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.SPRUCE_LOG),
+                new StraightTrunkPlacer(1, 2, 1),
+                BlockStateProvider.simple(Blocks.SPRUCE_LEAVES),
+                new SpruceFoliagePlacer(UniformInt.of(1, 2), UniformInt.of(0, 1), UniformInt.of(1, 1)),
+                new TwoLayersFeatureSize(1, 0, 1)
+        ).ignoreVines().build());
 
         register(context, PATCH_DOUGLAS_IRIS, Feature.FLOWER,
                 new RandomPatchConfiguration(
@@ -108,6 +123,40 @@ public class ModConfiguredFeatures {
                                 )
                         )
                 ));
+
+        register(context, PATCH_LAVENDER, Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        22,
+                        6,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(ModBlocks.LAVENDER.get())
+                                )
+                        )
+                ));
+
+        register(context, PATCH_FIELD_FLOWERS, Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        64,
+                        6,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        new WeightedStateProvider(
+                                                SimpleWeightedRandomList.<net.minecraft.world.level.block.state.BlockState>builder()
+                                                        .add(Blocks.DANDELION.defaultBlockState(), 2)
+                                                        .add(Blocks.CORNFLOWER.defaultBlockState(), 3)
+                                                        .add(Blocks.AZURE_BLUET.defaultBlockState(), 1)
+                                                        .build()
+                                        )
+                                )
+                        )
+                )
+        );
+
     }
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(

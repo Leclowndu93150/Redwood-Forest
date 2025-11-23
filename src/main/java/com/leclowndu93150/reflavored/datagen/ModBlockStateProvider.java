@@ -1,6 +1,6 @@
 package com.leclowndu93150.reflavored.datagen;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import com.leclowndu93150.reflavored.init.ModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -15,7 +15,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, RedwoodForest.MODID, exFileHelper);
+        super(output, Redflavored.MODID, exFileHelper);
     }
 
     @Override
@@ -116,13 +116,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .modelForState().modelFile(models().cross("pink_rose_bush_top",
                         modLoc("block/pink_rose_bush_top")).renderType("cutout")).addModel();
 
+        simpleBlock(ModBlocks.LAVENDER.get(),
+                models().cross(blockTexture(ModBlocks.LAVENDER.get()).getPath(),
+                        blockTexture(ModBlocks.LAVENDER.get())).renderType("cutout"));
+
         pottedPlantBlock(ModBlocks.POTTED_DOUGLAS_IRIS.get(), blockTexture(ModBlocks.DOUGLAS_IRIS.get()));
         pottedPlantBlock(ModBlocks.POTTED_TRILLIUM.get(), blockTexture(ModBlocks.TRILLIUM.get()));
+        pottedPlantBlock(ModBlocks.POTTED_LAVENDER.get(), blockTexture(ModBlocks.LAVENDER.get()));
 
-        // FD cabinet only if bound
-        if (com.leclowndu93150.reflavored.compat.fd.FDCompat.REDWOOD_CABINET.isBound()) {
-            cabinetBlock(com.leclowndu93150.reflavored.compat.fd.FDCompat.REDWOOD_CABINET.get(), "redwood_cabinet");
-        }
+//        // FD cabinet only if bound
+//        if (com.leclowndu93150.reflavored.compat.fd.FDCompat.REDWOOD_CABINET.isBound()) {
+//            cabinetBlock(com.leclowndu93150.reflavored.compat.fd.FDCompat.REDWOOD_CABINET.get(), "redwood_cabinet");
+//        }
     }
 
     private void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -144,23 +149,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(potBlock, model);
     }
 
-    private void cabinetBlock(Block block, String modelBaseName) {
-        ModelFile closed = models().withExistingParent(modelBaseName, modLoc("block/" + modelBaseName));
-        ModelFile open   = models().withExistingParent(modelBaseName + "_open", modLoc("block/" + modelBaseName + "_open"));
-
-        getVariantBuilder(block).forAllStates(state -> {
-            var facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-            boolean isOpen = state.getValue(BlockStateProperties.OPEN);
-            ModelFile mf = isOpen ? open : closed;
-            int y = switch (facing) {
-                case SOUTH -> 180;
-                case WEST  -> 270;
-                case EAST  -> 90;
-                default    -> 0;
-            };
-            return ConfiguredModel.builder().modelFile(mf).rotationY(y).build();
-        });
-    }
+//    private void cabinetBlock(Block block, String modelBaseName) {
+//        ModelFile closed = models().withExistingParent(modelBaseName, modLoc("block/" + modelBaseName));
+//        ModelFile open   = models().withExistingParent(modelBaseName + "_open", modLoc("block/" + modelBaseName + "_open"));
+//
+//        getVariantBuilder(block).forAllStates(state -> {
+//            var facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+//            boolean isOpen = state.getValue(BlockStateProperties.OPEN);
+//            ModelFile mf = isOpen ? open : closed;
+//            int y = switch (facing) {
+//                case SOUTH -> 180;
+//                case WEST  -> 270;
+//                case EAST  -> 90;
+//                default    -> 0;
+//            };
+//            return ConfiguredModel.builder().modelFile(mf).rotationY(y).build();
+//        });
+//    }
 
     private String name(Block block) {
         return key(block).getPath();

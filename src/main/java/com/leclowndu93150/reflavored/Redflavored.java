@@ -4,23 +4,18 @@ import com.leclowndu93150.reflavored.init.*;
 import com.leclowndu93150.reflavored.worldgen.ModRegion;
 import com.mojang.logging.LogUtils;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.client.renderer.entity.FoxRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.animal.Fox;
-import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.levelgen.feature.RandomPatchFeature;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -31,25 +26,24 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.slf4j.Logger;
 import terrablender.api.Regions;
-import terrablender.api.SurfaceRuleManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod(RedwoodForest.MODID)
-public class RedwoodForest {
+@Mod(Redflavored.MODID)
+public class Redflavored {
     public static final String MODID = "reflavored";
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final Map<Block, Block> MOD_STRIPPABLES = new HashMap<>();
 
-    public RedwoodForest(IEventBus modEventBus, ModContainer modContainer) {
+    public Redflavored(IEventBus modEventBus, ModContainer modContainer) {
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModBoats.ENTITY_TYPES.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        com.leclowndu93150.reflavored.compat.fd.FDCompatBootstrap.init(modEventBus);
+//        com.leclowndu93150.reflavored.compat.fd.FDCompatBootstrap.init(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::commonSetup);

@@ -1,26 +1,36 @@
 package com.leclowndu93150.reflavored.init;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> REDWOOD_CHECKED = createKey("redwood_checked");
+    public static final ResourceKey<PlacedFeature> CYPRESSE_CHECKED = createKey("cypresse_checked");
     public static final ResourceKey<PlacedFeature> MEGA_REDWOOD_CHECKED = createKey("mega_redwood_checked");
     public static final ResourceKey<PlacedFeature> REDWOOD_TREES = createKey("redwood_trees");
+
+    public static final ResourceKey<PlacedFeature> SPARSE_OLD_GROWTH_SPRUCE_TREES = createKey("sparse_old_growth_spruce_trees");
+
     public static final ResourceKey<PlacedFeature> BROWN_MUSHROOM_REDWOOD = createKey("brown_mushroom_redwood");
     public static final ResourceKey<PlacedFeature> RED_MUSHROOM_REDWOOD = createKey("red_mushroom_redwood");
     public static final ResourceKey<PlacedFeature> PATCH_GRASS_REDWOOD = createKey("patch_grass_redwood");
@@ -32,8 +42,13 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> PATCH_TRILLIUM = createKey("patch_trillium");
     public static final ResourceKey<PlacedFeature> PATCH_ALPINE_LILY = createKey("patch_alpine_lily");
 
+    public static final ResourceKey<PlacedFeature> LAVENDER_PATCH = createKey("lavender_patch");
+
+    public static final ResourceKey<PlacedFeature> PATCH_FIELD_FLOWERS = createKey("patch_field_flowers");
+
+
     public static ResourceKey<PlacedFeature> createKey(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(RedwoodForest.MODID, name));
+        return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Redflavored.MODID, name));
     }
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -45,12 +60,24 @@ public class ModPlacedFeatures {
         register(context, MEGA_REDWOOD_CHECKED, configuredFeatures.getOrThrow(ModConfiguredFeatures.MEGA_REDWOOD),
                 PlacementUtils.filteredByBlockSurvival(ModBlocks.REDWOOD_SAPLING.get()));
 
+        register(context, CYPRESSE_CHECKED, configuredFeatures.getOrThrow(ModConfiguredFeatures.CYPRESSE),
+                PlacementUtils.filteredByBlockSurvival(ModBlocks.LAVENDER.get())); //using the lavender for testing only, //TODO replace with an actual sapling
+
         register(context, REDWOOD_TREES, configuredFeatures.getOrThrow(ModConfiguredFeatures.REDWOOD_TREES),
                 CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
                         .add(ConstantInt.of(8), 7)
                         .add(ConstantInt.of(9), 2)
                         .add(ConstantInt.of(10), 1)
                         .build())),
+                InSquarePlacement.spread(),
+                SurfaceWaterDepthFilter.forMaxDepth(0),
+                PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
+                BiomeFilter.biome());
+
+        register(context,
+                SPARSE_OLD_GROWTH_SPRUCE_TREES,
+                configuredFeatures.getOrThrow(TreeFeatures.SPRUCE),
+                CountPlacement.of(UniformInt.of(0, 2)),
                 InSquarePlacement.spread(),
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
@@ -103,6 +130,22 @@ public class ModPlacedFeatures {
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome());
+
+        register(context, LAVENDER_PATCH,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.PATCH_LAVENDER),
+                CountPlacement.of(UniformInt.of(10, 20)),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome());
+
+        register(context, PATCH_FIELD_FLOWERS,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.PATCH_FIELD_FLOWERS),
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome());
+
+
     }
 
     private static void register(BootstrapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key,

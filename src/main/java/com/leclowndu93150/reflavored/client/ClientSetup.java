@@ -1,6 +1,6 @@
 package com.leclowndu93150.reflavored.client;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import com.leclowndu93150.reflavored.client.renderer.ModBoatRenderer;
 import com.leclowndu93150.reflavored.client.renderer.ModChestBoatRenderer;
 import com.leclowndu93150.reflavored.client.renderer.ModFoxRenderer;
@@ -21,7 +21,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
-@EventBusSubscriber(modid = RedwoodForest.MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = Redflavored.MODID, value = Dist.CLIENT)
 public class ClientSetup {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {

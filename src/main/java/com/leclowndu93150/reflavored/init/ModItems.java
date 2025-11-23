@@ -1,13 +1,13 @@
 package com.leclowndu93150.reflavored.init;
 
-import com.leclowndu93150.reflavored.RedwoodForest;
+import com.leclowndu93150.reflavored.Redflavored;
 import com.leclowndu93150.reflavored.item.ModBoatItem;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(RedwoodForest.MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Redflavored.MODID);
 
     public static final DeferredItem<BlockItem> REDWOOD_LEAVES = ITEMS.registerSimpleBlockItem("redwood_leaves", ModBlocks.REDWOOD_LEAVES);
     public static final DeferredItem<BlockItem> REDWOOD_LOG = ITEMS.registerSimpleBlockItem("redwood_log", ModBlocks.REDWOOD_LOG);
@@ -48,4 +48,6 @@ public class ModItems {
             () -> new DoubleHighBlockItem(ModBlocks.YELLOW_LILY.get(), new Item.Properties()));
     public static final DeferredItem<BlockItem> PINK_LILY = ITEMS.register("pink_rose_bush",
             () -> new DoubleHighBlockItem(ModBlocks.PINK_LILY.get(), new Item.Properties()));
+
+    public static final DeferredItem<BlockItem> LAVENDER = ITEMS.registerSimpleBlockItem("lavender", ModBlocks.LAVENDER);
 }
